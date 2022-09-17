@@ -31,7 +31,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // reach for `Bpf::load_file` instead.
     #[cfg(debug_assertions)]
     let mut bpf = Bpf::load(include_bytes_aligned!(
-        "../../target/bpfel-unknown-none/release/echo"
+        "../../target/bpfel-unknown-none/debug/echo"
     ))?;
     #[cfg(not(debug_assertions))]
     let mut bpf = Bpf::load(include_bytes_aligned!(
