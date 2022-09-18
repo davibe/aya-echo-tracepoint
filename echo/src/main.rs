@@ -1,15 +1,13 @@
-use aya::{include_bytes_aligned, Bpf};
 use aya::programs::TracePoint;
+use aya::{include_bytes_aligned, Bpf};
+use aya_log::BpfLogger;
 use log::info;
 use simplelog::{ColorChoice, ConfigBuilder, LevelFilter, TermLogger, TerminalMode};
 use structopt::StructOpt;
 use tokio::signal;
-use aya_log::BpfLogger;
 
 #[derive(Debug, StructOpt)]
-struct Opt {
-    
-}
+struct Opt {}
 
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
@@ -31,7 +29,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // reach for `Bpf::load_file` instead.
     #[cfg(debug_assertions)]
     let mut bpf = Bpf::load(include_bytes_aligned!(
-        "../../target/bpfel-unknown-none/release/echo"
+        "../../target/bpfel-unknown-none/debug/echo"
     ))?;
     #[cfg(not(debug_assertions))]
     let mut bpf = Bpf::load(include_bytes_aligned!(
