@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-use aya_bpf::{
+use aya_ebpf::{
     cty::c_long,
     helpers::bpf_probe_read_user_str_bytes,
     macros::{map, tracepoint},
@@ -21,7 +21,7 @@ pub struct Buf {
 #[map]
 pub static mut BUF: PerCpuArray<Buf> = PerCpuArray::with_max_entries(1, 0);
 
-#[tracepoint(name = "echo")]
+#[tracepoint]
 pub fn echo_trace_open(ctx: TracePointContext) -> c_long {
     match try_echo_trace_open(ctx) {
         Ok(ret) => ret,

@@ -27,7 +27,7 @@ async fn main() -> Result<(), anyhow::Error> {
         "../../target/bpfel-unknown-none/release/echo"
     ))?;
     BpfLogger::init(&mut bpf).unwrap();
-    let program: &mut TracePoint = bpf.program_mut("echo").unwrap().try_into()?;
+    let program: &mut TracePoint = bpf.program_mut("echo_trace_open").unwrap().try_into()?;
     program.load()?;
     program.attach("syscalls", "sys_enter_openat")?;
 
