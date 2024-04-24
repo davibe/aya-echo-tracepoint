@@ -57,6 +57,7 @@ fn try_echo_trace_open(ctx: TracePointContext) -> Result<c_long, c_long> {
     Ok(0)
 }
 
+#[cfg(not(test))]
 #[panic_handler]
 fn panic(_info: &core::panic::PanicInfo) -> ! {
     unsafe { core::hint::unreachable_unchecked() }

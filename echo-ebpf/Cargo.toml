@@ -11,6 +11,8 @@ echo-common = { path = "../echo-common" }
 [[bin]]
 name = "echo"
 path = "src/main.rs"
+test = false
+bench = false
 
 [profile.dev]
 opt-level = 3
